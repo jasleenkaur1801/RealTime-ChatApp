@@ -1,8 +1,8 @@
-import User from "../models/User";
+import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
 //middleware to protect routes
-export const protectRoute = async (res,res,next)=>{
+export const protectRoute = async (req,res,next)=>{
     try {
         const token = req.headers.token;
         const decoded = jwt.verify(token,process.env.JWT_SECRET)
@@ -18,6 +18,6 @@ export const protectRoute = async (res,res,next)=>{
 }
 
 //controller to check if user is authenticated
-export const checkAuth = (res,res)=>{
+export const checkAuth = (req,res)=>{
     res.json({success: true,user: req.user});
 }
